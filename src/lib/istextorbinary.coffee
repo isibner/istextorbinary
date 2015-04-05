@@ -22,14 +22,15 @@ isTextOrBinary =
 			# Extract filename
 			filename = pathUtil.basename(filename).split('.')
 
-			# Test extension, if one exists
-			if filename.length > 1
-				# Test the actual extension
-				extension = filename.pop()
+
+			# Cycle extensions in reverse order
+			for extension in filename.reverse()
 				if extension in textExtensions
 					isText = true
+					break
 				if extension in binaryExtensions
 					isText = false
+					break
 
 		# Fallback to encoding if extension check was not enough
 		if buffer and isText is null
